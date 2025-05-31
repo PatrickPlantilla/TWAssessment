@@ -109,7 +109,7 @@ app.post('/api/add-weight', authenticateToken, async (req, res) => {
 });
 
 // Place this after all API routes:
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
   if (!req.path.startsWith('/api/')) {
     res.sendFile(path.join(__dirname, '../Public/index.html'));
   }
