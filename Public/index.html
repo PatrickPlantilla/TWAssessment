@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weight Tracker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <section id="signup-section">
+      <div class="auth-flex">
+        <div class="auth-logo">
+          <img src="https://lh3.googleusercontent.com/d/1qeSTU2BNtnW_cTUFlypwukmXOl8WFPmJ" alt="Logo">
+        </div>
+        <div class="auth-form">
+          <h2>Sign Up</h2>
+          <form id="signup-form">
+            <input type="text" id="signup-name" placeholder="Name" required><br>
+            <input type="number" id="signup-age" placeholder="Age" required><br>
+            <input type="text" id="signup-username" placeholder="Username" required><br>
+            <input type="password" id="signup-password" placeholder="Password" required><br>
+            <input type="number" id="signup-weight" placeholder="Weight (kg)" required><br>
+            <input type="number" id="signup-height" placeholder="Height (cm)" required><br>
+            <button type="submit">Sign Up</button>
+            <p id="signup-message"></p>
+          </form>
+          <p>Already have an account? <a href="#login-section">Log In</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="login-section" style="display:none;">
+      <div class="auth-flex">
+        <div class="auth-logo">
+          <img src="https://lh3.googleusercontent.com/d/1qeSTU2BNtnW_cTUFlypwukmXOl8WFPmJ" alt="Logo">
+        </div>
+        <div class="auth-form">
+          <h2>Log In</h2>
+          <form id="login-form">
+            <input type="text" id="login-username" placeholder="Username" required><br>
+            <input type="password" id="login-password" placeholder="Password" required><br>
+            <button type="submit">Log In</button>
+            <p id="login-message"></p>
+          </form>
+          <p>Don't have an account? <a href="#signup-section">Sign Up</a></p>
+        </div>
+      </div>
+    </section>
+
+    <main id="main-content" style="display:none;">
+      <nav class="nav" id="main-nav">
+        <ul style="align-items: center; position: relative;">
+          <li style="margin: 0; padding: 0;">
+            <img id="nav-profile-pic" src="" alt="Profile">
+          </li>
+          <li><a href="#yourstats">Your Stats</a></li>
+          <li><a href="#calendarsection">Calendar</a></li>
+          <li><a href="#aboutus-section">About Us</a></li>
+          <li id="logoutLink" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; list-style: none;">Logout</li>
+        </ul>
+      </nav>
+
+      <div id="yourstatssection" style="display: flex; align-items: flex-start; gap: 32px;">
+        <div style="flex:1;">
+          <h2>Your Stats</h2>
+          <div id="yourstats" style="display: flex; align-items: center; gap: 32px;">
+            <div id="profile-pic-side" style="text-align:center;">
+              <img id="profile-pic" alt="Profile Picture" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:2px solid #ccc;cursor:pointer;">
+            </div>
+            <div id="stats-info" style="flex: 1;">
+              <p>Date: <span id="stats-date"></span></p>
+              <p>Name: <span id="stats-name"></span></p>
+              <p>Age: <span id="stats-age"></span></p>
+              <p>Height: <span id="stats-height"></span> cm</p>
+              <p>Current Weight: <span id="stats-weight" class="weight-status"></span></p>
+              <p>Recommended Weight Range: <span id="recommended-weight-range"></span> kg</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="profile-pic-popup" class="overlay" style="display:none; margin-top: 0px;">
+        <div class="popup-content" style="max-width:400px;">
+          <span class="close-button" id="close-profile-pic-popup">&times;</span>
+          <h3 style="align-items: center; text-align: center;">Choose a Profile Picture</h3>
+          <div id="profile-pic-options" style="display:flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 16px;"></div>
+        </div>
+      </div>
+
+      <div id="calendarsection">
+        <h2>Weight Calendar</h2>
+        <div id="calendar-months" style="display: flex; flex-direction: row; gap: 24px;"></div>
+      </div>
+
+      <div id="weight-graph-section">
+        <h3 style="margin-bottom: 8px;">Weight Progress</h3>
+        <svg id="weight-graph" width="1200px" height="250" style="background: #f9f9f9; border-radius: 8px; border: 1px solid #ddd; display: block;"></svg>
+      </div>
+
+      <div>
+        <h3>Add New Weight</h3>
+        <form id="add-weight-form">
+          <input type="number" id="new-weight" placeholder="New Weight (kg)" required>
+          <button type="submit">Add Weight</button>
+          <p id="add-weight-message"></p>
+        </form>
+      </div>
+
+      <div id="aboutus-section">
+        <h2>About Us</h2>
+        <div class="aboutus-flex">
+          <div class="aboutus-text">
+            <p>What is 87? This is a website showcase by a BathSpa University student. The website's goal is to showcase the students' website building skills. The concept of this website is a weight loss tracker. You input your weight and height and it records it on a database and records it for you. It also displays your weight on a graph as a timeline of your weight for however long you've been reporting your weight.</p>
+            <p>Why is the name “87”? A recent study regarding diabetes patients and remission techniques was conducted. The study found out that a staggering 87% of patients that did a diet and lost weight were able to completely reverse diabetes and subsequently every diabetes-related and cause health issues. <br><span style="font-size:0.98em;">Reference: <a href="https://bmcmedicine.biomedcentral.com/articles/10.1186/s12916-025-04072-4" target="_blank" rel="noopener noreferrer">BMC Medicine, 2025: "Remission of type 2 diabetes after weight loss"</a></span> This is also why this project felt like it had an important purpose. Its weight tracker is able to give people at Death's doorstep a chance to turn back.</p>
+            <p>We hope you find this website useful and that it helps you on your journey to a healthier life.</p>
+            <p>Thank you for visiting!</p>
+          </div>
+          <div class="aboutus-img">
+            <img src="https://lh3.googleusercontent.com/d/10fqDMEa1A2uKyGVHzmaF1ZteGBemUdt4" alt="Healthy" />
+          </div>
+        </div>
+      </div>
+      <div id="weight-popup" class="overlay" style="display:none; margin-top: 0px;">
+        <div class="popup-content">
+          <span class="close-button">&times;</span>
+          <h3>Weight Information</h3>
+          <p>Name: <span id="popup-name"></span></p>
+          <p>Age: <span id="popup-age"></span></p>
+          <p>Height: <span id="popup-height"></span> cm</p>
+          <p>Current Weight: <span id="popup-current-weight" class="weight-status"></span></p>
+          <p>Weight this day: <span id="weight-this-day" class="weight-status"></span></p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+  
+</body>
+</html>
