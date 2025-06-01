@@ -752,4 +752,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Run default page logic on load
   showDefaultPage();
+
+  // Trigger default search in Google CSE for meal suggestions
+  function triggerDefaultMealSearch() {
+    if (window.google && window.google.search && window.google.search.cse) {
+      const element = google.search.cse.element.getElement('gcse-search');
+      if (element) {
+        element.execute('high protein low calorie recipes under 400 calories');
+      }
+    }
+  }
+
+  // Wait for CSE to load, then trigger default search
+  function tryTriggerMealSearch() {
+    if (window.google && window.google.search && window.google.search.cse &&
+        google.search.cse.element && google.search.cse.element.getElement('gcse-search')) {
+      triggerDefaultMealSearch();
+    } else {
+      setTimeout(tryTriggerMealSearch, 500);
+    }
+  }
+
+  // When main content is shown, trigger the default search
+  const mainContent = document.getElementById('main-content');
+  const observer = new MutationObserver(() => {
+    if (mainContent.style.display !== 'none') {
+      tryTriggerMealSearch();
+    }
+  });
+  observer.observe(mainContent, { attributes: true, attributeFilter: ['style'] });
 });
